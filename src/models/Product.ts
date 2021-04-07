@@ -1,14 +1,18 @@
-import * as Yup from 'yup';
+import * as Yup from "yup";
 
 export type Product = {
-  id: string,
-  title: string,
-  description: string,
-  price: number,
+  id: string;
+  producer: string;
+  model: string;
+  description: string;
+  price: number;
+  imgUrl: string;
 };
 
 export const ProductSchema = Yup.object().shape({
-  title: Yup.string().required(),
+  producer: Yup.string().required(),
+  model: Yup.string().required(),
   description: Yup.string(),
   price: Yup.number().required(),
+  imgUrl: Yup.string().required(),
 });
