@@ -42,6 +42,16 @@ export default function Products() {
     });
   }, []);
 
+  // TODO refactor image loading
+  const dynamicImgLoader = (img: string) => {
+    try {
+      const image = require(`assets/images/${img}`);
+      return image;
+    } catch (e) {
+      return require("assets/images/default.png");
+    }
+  };
+
   return (
     <Grid container spacing={4}>
       {products.map((product: Product, index: number) => (
@@ -49,12 +59,12 @@ export default function Products() {
           <Card className={classes.card}>
             <CardMedia
               className={classes.cardMedia}
-              image={require(`assets/images/${product.imgUrl}`)}
+              image={dynamicImgLoader(product.img_url)}
               title="Image title"
             />
             <CardContent className={classes.cardContent}>
               <Typography gutterBottom variant="h4" component="h2">
-                {`${product.producer} ${product.model}`}
+                {`${product.title}`}
               </Typography>
               <Typography gutterBottom variant="body1" component="p">
                 {product.description}
